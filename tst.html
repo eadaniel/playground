@@ -210,7 +210,28 @@
     }
 
   </style>
-  <script>!function(e){var r={msgId:1},n=[{name:"buttonClicked",attr:"me-button-clicked",exec:function(e,t){o("buttonClicked",{buttonId:e},t)}},{name:"requestPushPermission",attr:"me-request-push-permission",exec:function(e){o("requestPushPermission",{},e)}},{name:"triggerAppEvent",attr:"me-trigger-app-event",exec:function(e,t){o("triggerAppEvent",{name:e.type,payload:e.payload},t)},fnWrap:function(e,t,n){this.exec({type:e,payload:t},n)}},{name:"triggerMEEvent",attr:"me-trigger-event",exec:function(e,t){o("triggerMEEvent",{name:e.type,payload:e.payload},t)},fnWrap:function(e,t,n){this.exec({type:e,payload:t},n)}},{name:"openExternalLink",attr:"href",exec:function(e,t){"http"===e.slice(0,4)&&o("openExternalLink",{url:e},t)}},{name:"makeNetworkRequest",attr:"me-make-network-request",exec:function(e,t){o("makeNetworkRequest",{request:e},t)},fnWrap:function(e,t,n,r,a){this.exec({url:e,method:t,headers:n,payload:r},a)}},{name:"close",attr:"me-close",exec:function(e){o("close",{},e)}}],a=[],i={state:r,handleResponse:function(e){a[e.id]&&(a[e.id](e),delete a[e.id])},send:function(e,t){window.webkit?window.webkit.messageHandlers[e].postMessage(t):window.Android[e](JSON.stringify(t))}};function o(e,t,n){t.id=(r.msgId++).toString(),a[t.id]=n,i.send(e,t)}function t(e){var r=e.target,t=n.filter(function(e){return r.hasAttribute(e.attr)});e.preventDefault(),t.forEach(function(t){var n;try{n=JSON.parse(r.getAttribute(t.attr))}catch(e){n=r.getAttribute(t.attr)}try{t.exec(n)}catch(e){console.error(e)}})}n.forEach(function(e){i[e.name]=e.fnWrap?e.fnWrap.bind(e):e.exec}),e.MEIAM=i,e.onload=function(){var e=n.map(function(e){return e.attr});document.querySelectorAll("["+e.join("],[")+"]").forEach(function(e){e.addEventListener("click",t)})}}(this);</script>
+  <script>
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+      var string = msg.toLowerCase();
+      var substring = "script error";
+      if (string.indexOf(substring) > -1){
+        alert('Script Error: See Browser Console for Detail');
+      } else {
+        var message = [
+          'Message: ' + msg,
+          'URL: ' + url,
+          'Line: ' + lineNo,
+          'Column: ' + columnNo,
+          'Error object: ' + JSON.stringify(error)
+        ].join(' - ');
+
+        alert(message);
+      }
+
+      return false;
+    };
+
+    !function(e){var r={msgId:1},n=[{name:"buttonClicked",attr:"me-button-clicked",exec:function(e,t){o("buttonClicked",{buttonId:e},t)}},{name:"requestPushPermission",attr:"me-request-push-permission",exec:function(e){o("requestPushPermission",{},e)}},{name:"triggerAppEvent",attr:"me-trigger-app-event",exec:function(e,t){o("triggerAppEvent",{name:e.type,payload:e.payload},t)},fnWrap:function(e,t,n){this.exec({type:e,payload:t},n)}},{name:"triggerMEEvent",attr:"me-trigger-event",exec:function(e,t){o("triggerMEEvent",{name:e.type,payload:e.payload},t)},fnWrap:function(e,t,n){this.exec({type:e,payload:t},n)}},{name:"openExternalLink",attr:"href",exec:function(e,t){"http"===e.slice(0,4)&&o("openExternalLink",{url:e},t)}},{name:"makeNetworkRequest",attr:"me-make-network-request",exec:function(e,t){o("makeNetworkRequest",{request:e},t)},fnWrap:function(e,t,n,r,a){this.exec({url:e,method:t,headers:n,payload:r},a)}},{name:"close",attr:"me-close",exec:function(e){o("close",{},e)}}],a=[],i={state:r,handleResponse:function(e){a[e.id]&&(a[e.id](e),delete a[e.id])},send:function(e,t){window.webkit?window.webkit.messageHandlers[e].postMessage(t):window.Android[e](JSON.stringify(t))}};function o(e,t,n){t.id=(r.msgId++).toString(),a[t.id]=n,i.send(e,t)}function t(e){var r=e.target,t=n.filter(function(e){return r.hasAttribute(e.attr)});e.preventDefault(),t.forEach(function(t){var n;try{n=JSON.parse(r.getAttribute(t.attr))}catch(e){n=r.getAttribute(t.attr)}try{t.exec(n)}catch(e){console.error(e)}})}n.forEach(function(e){i[e.name]=e.fnWrap?e.fnWrap.bind(e):e.exec}),e.MEIAM=i,e.onload=function(){var e=n.map(function(e){return e.attr});document.querySelectorAll("["+e.join("],[")+"]").forEach(function(e){e.addEventListener("click",t)})}}(this);</script>
 
 </head>
 
